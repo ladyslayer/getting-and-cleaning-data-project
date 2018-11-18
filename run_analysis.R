@@ -1,13 +1,4 @@
-# Getting and Cleaning Data
-#Merges the training and the test sets to create one data set.
-#Extract the measurements of mean and standard deviation for each measurement.
-#Name the activities in the data set
-#Label the data set with descriptive variable names.
-#Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-
-
-#Get the Data
 packages <- c("data.table", "reshape2")
 sapply(packages, require, character.only=TRUE, quietly=TRUE)
 path <- getwd()
