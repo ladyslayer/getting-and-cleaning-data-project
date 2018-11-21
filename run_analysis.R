@@ -1,5 +1,5 @@
 
-# 1. Merges the training and the test sets to create one data set.
+#  Merges the training and the test sets to create one data set.
 
 temp_train <- read.table("train/X_train.txt")
 temp_test <- read.table("test/X_test.txt")
@@ -13,7 +13,7 @@ temp_train <- read.table("train/subject_train.txt")
 temp_test <- read.table("test/subject_test.txt")
 Subject <- rbind(temp_train, temp_test)
 
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+#  Extracts only the measurements on the mean and standard deviation for each measurement.
 
 features <- read.table("features.txt")
 index_of_good_features <- grep("-mean\\(\\)|-std\\(\\)", features[, 2])
@@ -22,20 +22,20 @@ names(X) <- features[index_of_good_features, 2]
 names(X) <- gsub("\\(|\\)", "", names(X))
 names(X) <- tolower(names(X))
 
-# 3. Uses descriptive activity names to name the activities in the data set.
+#  Uses descriptive activity names to name the activities in the data set.
 
 activity <- read.table("activity_labels.txt")
 activity[, 2] = gsub("_", "", tolower(as.character(activity[, 2])))
 Y[, 1] = activity[Y[ , 1], 2]
 names(Y) <- "activity"
 
-# 4. Appropriately labels the data set with descriptive activity names.
+#Appropriately labels the data set with descriptive activity names.
 
 names(Subject) <- "subject"
 clean <- cbind(Subject, Y, X)
 write.table(clean, "merged_clean_and_tidy_data.txt")
 
-# 5. Creates a 2nd, independent tidy data set with the average of each variable for each activity and each subject.
+#Creates a 2nd, independent tidy data set with the average of each variable for each activity and each subject.
 
 uniqueSubjects <- unique(Subject)[, 1]
 numSubjects <- length(unique(Subject)[, 1])
